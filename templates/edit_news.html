@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: .4rem;
+  }
+</style>
+<div class="container mt-4">
+  <h2>Yangilash</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-teal">Submit</button>
+  </form>
+</div>
+
+{% endblock %}

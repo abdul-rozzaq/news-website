@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        {% for news in news_list %}
+        <div class="col-md-6 mb-4">
+            <div class="card mt-4 h-100">
+                <img class="card-img-top border-bottom" src="{{ news.image.url }}" alt="{{ news.title }}"
+                    style="height: 400px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ news.title }}</h5>
+                    <p class="card-text">{{ news.body|slice:":150" }}...</p>
+                    <a href="{% url 'detail_page' news.pk %}" class="btn btn-teal">Read more</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

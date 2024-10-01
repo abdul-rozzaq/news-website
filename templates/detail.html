@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card">
+
+    <img src="{{ news_item.image.url }}" class="card-img-top" alt="{{ news_item.title }}">
+    
+    <div class="card-body">
+      <h3 class="card-title">{{ news_item.title }}</h3>
+      
+      <p class="card-text">{{ news_item.body }}</p>
+      
+      <p class="text-muted">
+        Yaratuvchi: <b>{{ news_item.user.username }}</b> | 
+        Yaratilgan sana: <b>{{ news_item.created_at }}</b> | 
+        Yangilangan sana: <b>{{ news_item.updated_at }}</b> | 
+        Ko'rilganlar: <b>{{ news_item.views_count }}</b>
+      </p>
+      
+      {% if user.is_authenticated and user == news_item.user %}
+        <a href="{% url 'edit_news' news_item.pk %}" class="btn btn-teal">Tahrirlash</a>
+        <a href="{% url 'delete_news' news_item.pk %}" class="btn btn-danger" 
+           onclick="return confirm('Ushbu yangilikni o\'chirishga ishonchingiz komilmi?');">O'chirish</a>
+      {% endif %}
+      
+      <a href="{% url 'home_page' %}" class="btn btn-secondary">Orqaga</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
